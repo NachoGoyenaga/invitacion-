@@ -38,12 +38,12 @@ const App = () => {
   const [answerContent, setAnswerContent] = useState({ image: '', text: '' })
 
   const handleYes = () => {
-    setAnswerContent({ image: '/yes.png', text: '¡Sí! 💖' })
+    setAnswerContent({ image: `${import.meta.env.BASE_URL}yes.png`, text: '¡Sí! 💖' })
     setShowAnswer(true)
   }
 
   const handleNo = () => {
-    setAnswerContent({ image: '/no.webp', text: 'Oh no... 💔' })
+    setAnswerContent({ image: `${import.meta.env.BASE_URL}no.webp`, text: 'Oh no... 💔' })
     setShowAnswer(true)
   }
 
@@ -52,7 +52,6 @@ const App = () => {
     setAnswerContent({ image: '', text: '' })
   }
 
-  // Meta viewport si no existe
   useEffect(() => {
     if (typeof document !== 'undefined' && !document.querySelector('meta[name="viewport"]')) {
       const meta = document.createElement('meta')
@@ -65,7 +64,6 @@ const App = () => {
   return (
     <div className="app-root relative min-h-screen bg-pink-100 text-gray-900 font-sans overflow-x-hidden w-full max-w-none box-border">
 
-      {/* SI SE MUESTRA LA RESPUESTA DEL BOTÓN */}
       {showAnswer ? (
         <section className="w-full px-4 sm:px-6 text-center py-20">
           <div className="w-full max-w-md mx-auto flex flex-col items-center justify-center gap-6">
@@ -81,7 +79,6 @@ const App = () => {
         </section>
       ) : (
         <>
-          {/* INVITACIÓN COMPLETA */}
           <section className="w-full h-screen bg-cover bg-center flex flex-col justify-center items-center text-center px-4 relative">
             <div className="w-full max-w-md mx-auto">
               <h1 className="text-2xl sm:text-5xl font-extrabold text-white drop-shadow-lg mb-6 leading-tight break-words whitespace-normal">
@@ -98,7 +95,7 @@ const App = () => {
             <div className="w-full max-w-md mx-auto flex flex-col items-center justify-center min-h-[70vh]">
               <h2 className="text-xl sm:text-3xl font-semibold text-pink-700 mb-4 break-words">Ubicación: Secreta</h2>
               <p className="text-base sm:text-lg text-pink-900 mb-6">El lugar te lo cuento cuando digas que sí...</p>
-              <img src="/citajpg.webp" alt="Ubicación secreta" className="w-full h-auto rounded-2xl shadow-lg object-cover" />
+              <img src={`${import.meta.env.BASE_URL}citajpg.webp`} alt="Ubicación secreta" className="w-full h-auto rounded-2xl shadow-lg object-cover" />
             </div>
           </section>
 
@@ -106,13 +103,12 @@ const App = () => {
             <div className="w-full max-w-md mx-auto flex flex-col items-center justify-center min-h-[70vh]">
               <h2 className="text-xl sm:text-3xl font-semibold text-pink-700 mb-4 break-words">¿Con quién?</h2>
               <p className="text-base sm:text-lg text-pink-900 mb-6">Conmigo</p>
-              <img src="/us.jpeg" alt="Nosotros" className="w-full h-auto rounded-2xl shadow-lg object-cover" />
+              <img src={`${import.meta.env.BASE_URL}us.jpeg`} alt="Nosotros" className="w-full h-auto rounded-2xl shadow-lg object-cover" />
             </div>
           </section>
         </>
       )}
 
-      {/* BOTONES FLOTANTES */}
       <FloatingButtons onYes={handleYes} onNo={handleNo} />
     </div>
   )
